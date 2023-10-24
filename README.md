@@ -1,16 +1,19 @@
-# expense_tracker
+# Expense Tracker App
 
-A new Flutter project.
+It is an expense tracker app where users can effortlessly record and manage expenses and view their expenses. Additionally, users can gain insights into their spending patterns through an interactive chart display.
 
-## Getting Started
+## Widgets learned:
 
-This project is a starting point for a Flutter application.
+- ListView
+- Card
+- Padding
+- Spacer
 
-A few resources to get you started if this is your first Flutter project:
+## Things learned:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Used Uuid external package to generate unique id
+- Defined and used Enum
+- Difference between using simple ListView with its children property and ListView with builder constructor i.e ListView.builder()
+- Used Card widget to display list items
+- Used padding widget to add padding around widgets
+- Used spacer widget to add space between multiple widgets
