@@ -8,6 +8,8 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - Card
 - Padding
 - Spacer
+- AppBar
+- IconButton
 
 ## Things learned:
 
@@ -18,3 +20,6 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - Used padding widget to add padding around widgets
 - Used spacer widget to add space between multiple widgets
 - Formatted date using an external package named intl
+- Used appBar property of Scaffold widget to create an app bar
+- Made a button that only contains an icon using the IconButton
+- Used theme property of Scaffold to add Material3 (default is Material2) app bar using ThemeData widget
