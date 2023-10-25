@@ -34,9 +34,9 @@ class ExpenseItem extends StatelessWidget {
                 // other words, it will add space between.
                 Row(
                   children: [
-                    const Icon(Icons.alarm),
+                    Icon(categoryIcons[expense.category]),
                     const SizedBox(width: 8),
-                    Text(expense.date.toString())
+                    Text(expense.formattedDate)
                   ],
                 )
               ],

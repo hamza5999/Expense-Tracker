@@ -17,3 +17,4 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - Used Card widget to display list items
 - Used padding widget to add padding around widgets
 - Used spacer widget to add space between multiple widgets
+- Formatted date using an external package named intl
