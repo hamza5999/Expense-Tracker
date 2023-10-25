@@ -12,6 +12,7 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - IconButton
 - Builtin Flutter UI Elements - showModalBottomSheet etc
 - TextField
+- TextEditingController() class
 
 ## Things learned:
 
@@ -28,3 +29,5 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - Used flutter builtin UI elements like the one named showModalBottomSheet to show a modal
 - Used TextField widget to add an input field
 - Used decoration property of TextField with InputDecoration to add labels to the fields
+- Used TextEditingController class to store and handle the user input
+- Used dispose() to delete TextEditingController() after use

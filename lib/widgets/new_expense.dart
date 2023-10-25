@@ -10,10 +10,19 @@ class NewExpense extends StatefulWidget {
 }
 
 class _NewExpenseState extends State<NewExpense> {
-  String _enteredTitle = "";
+  // TextEditingController() does all the heavy lifting of storing the entered
+  // user input and so on. We don't have to do it manually.
+  final _titleController = TextEditingController();
 
-  void _saveTitleInput(String inputValue) {
-    _enteredTitle = inputValue;
+  // When you create a TextEditingController you always have to tell Flutter to
+  // delete it when it is not needed anymore. And its done using this dispose().
+  // Otherwise, it will consume memory even though when not in use. And whole
+  // device memory will be taken up by these controllers, causing app to crash.
+  @override
+  void dispose() {
+    // Always dispose the TextEditingController before calling super.dispose().
+    _titleController.dispose();
+    super.dispose();
   }
 
   @override
@@ -23,7 +32,7 @@ class _NewExpenseState extends State<NewExpense> {
       child: Column(
         children: [
           TextField(
-            onChanged: _saveTitleInput,
+            controller: _titleController,
             maxLength: 50,
             decoration: const InputDecoration(
               labelText: "Title",
@@ -33,7 +42,7 @@ class _NewExpenseState extends State<NewExpense> {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  print(_enteredTitle);
+                  print(_titleController.text);
                 },
                 child: const Text("Save"),
               ),
