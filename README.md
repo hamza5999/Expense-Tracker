@@ -13,6 +13,7 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - Builtin Flutter UI Elements - showModalBottomSheet etc
 - TextField
 - TextEditingController() class
+- Navigator class
 
 ## Things learned:
 
@@ -32,3 +33,4 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - Used TextEditingController class to store and handle the user input
 - Used dispose() to delete TextEditingController() after use
 - Add $ sign by default in the amount field using the prefix paramter of InputDecoration
+- Used Naviagtor class's pop method to switch from the modal

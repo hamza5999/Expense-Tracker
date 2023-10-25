@@ -42,7 +42,7 @@ class _NewExpenseState extends State<NewExpense> {
           ),
           TextField(
             controller: _amountController,
-            keyboardType: TextInputType.number,
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
             decoration: const InputDecoration(
               labelText: "Amount",
               // $ is a special character used for string injection. We can't
@@ -54,7 +54,9 @@ class _NewExpenseState extends State<NewExpense> {
           Row(
             children: [
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                },
                 child: const Text("Cancel"),
               ),
               const Spacer(),
