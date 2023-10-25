@@ -10,6 +10,8 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - Spacer
 - AppBar
 - IconButton
+- Builtin Flutter UI Elements - showModalBottomSheet etc
+- TextField
 
 ## Things learned:
 
@@ -23,3 +25,6 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - Used appBar property of Scaffold widget to create an app bar
 - Made a button that only contains an icon using the IconButton
 - Used theme property of Scaffold to add Material3 (default is Material2) app bar using ThemeData widget
+- Used flutter builtin UI elements like the one named showModalBottomSheet to show a modal
+- Used TextField widget to add an input field
+- Used decoration property of TextField with InputDecoration to add labels to the fields
