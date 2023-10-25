@@ -31,3 +31,4 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - Used decoration property of TextField with InputDecoration to add labels to the fields
 - Used TextEditingController class to store and handle the user input
 - Used dispose() to delete TextEditingController() after use
+- Add $ sign by default in the amount field using the prefix paramter of InputDecoration
