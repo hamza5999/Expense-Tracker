@@ -28,10 +28,19 @@ class _ExpensesState extends State<Expenses> {
     ),
   ];
 
+  void _addExpense(Expense expense) {
+    // Adding expense in the setState method so that the UI may update too means
+    // the Expense list should be updated.
+
+    setState(() {
+      _registeredExpenses.add(expense);
+    });
+  }
+
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
       context: context,
-      builder: (context) => const NewExpense(),
+      builder: (context) => NewExpense(onAddExpense: _addExpense),
     );
   }
 
