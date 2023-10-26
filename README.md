@@ -15,6 +15,7 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - TextEditingController() class
 - Navigator class
 - Future data type
+- DropDownButton
 
 ## Things learned:
 
@@ -39,3 +40,4 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - Used a builtin date picker UI element
 - Used async and await to handle the response wrapped in a future after using showDatePicker
 - Used null check to force dart that a certain value won't be null
+- Made a dropdown menu button using the builtin UI element named DropDownButton

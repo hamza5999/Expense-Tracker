@@ -16,6 +16,7 @@ class _NewExpenseState extends State<NewExpense> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
   DateTime? _selectedDate;
+  Category? _selectedCategory = Category.leisure;
 
   // When you create a TextEditingController you always have to tell Flutter to
   // delete it when it is not needed anymore. And its done using this dispose().
@@ -93,9 +94,10 @@ class _NewExpenseState extends State<NewExpense> {
                     Text(
                       _selectedDate == null
                           ? "No date selected"
-                          : formatter.format(_selectedDate!), // Added null check
-                          // here to tell flutter that it won't be null here
-                          // because format() wants a non null argument.
+                          : formatter
+                              .format(_selectedDate!), // Added null check
+                      // here to tell flutter that it won't be null here
+                      // because format() wants a non null argument.
                     ),
                     IconButton(
                       onPressed: _presentDatePicker,
@@ -106,15 +108,38 @@ class _NewExpenseState extends State<NewExpense> {
               )
             ],
           ),
+          const SizedBox(height: 20),
           Row(
             children: [
+              DropdownButton(
+                value: _selectedCategory,
+                items: Category.values
+                    .map(
+                      (category) => DropdownMenuItem(
+                        value: category,
+                        child: Text(
+                          category.name.toUpperCase(),
+                        ),
+                      ),
+                    )
+                    .toList(),
+                onChanged: (value) {
+                  if (value == null) {
+                    return;
+                  }
+
+                  setState(() {
+                    _selectedCategory = value;
+                  });
+                },
+              ),
+              const Spacer(),
               TextButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
                 child: const Text("Cancel"),
               ),
-              const Spacer(),
               ElevatedButton(
                 onPressed: () {},
                 child: const Text("Save"),
