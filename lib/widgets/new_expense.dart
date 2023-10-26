@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:expense_tracker/models/expense.dart';
 
 class NewExpense extends StatefulWidget {
   const NewExpense({super.key});
@@ -14,6 +15,7 @@ class _NewExpenseState extends State<NewExpense> {
   // user input and so on. We don't have to do it manually.
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
+  DateTime? _selectedDate;
 
   // When you create a TextEditingController you always have to tell Flutter to
   // delete it when it is not needed anymore. And its done using this dispose().
@@ -25,6 +27,25 @@ class _NewExpenseState extends State<NewExpense> {
     _titleController.dispose();
     _amountController.dispose();
     super.dispose();
+  }
+
+  void _presentDatePicker() async {
+    final currentDate = DateTime.now();
+
+    final datePicked = await showDatePicker(
+      context: context,
+      initialDate: currentDate,
+      firstDate: DateTime(
+        currentDate.year - 1,
+        currentDate.month,
+        currentDate.day,
+      ),
+      lastDate: currentDate,
+    );
+
+    setState(() {
+      _selectedDate = datePicked;
+    });
   }
 
   @override
@@ -40,16 +61,50 @@ class _NewExpenseState extends State<NewExpense> {
               labelText: "Title",
             ),
           ),
-          TextField(
-            controller: _amountController,
-            keyboardType: const TextInputType.numberWithOptions(decimal: true),
-            decoration: const InputDecoration(
-              labelText: "Amount",
-              // $ is a special character used for string injection. We can't
-              // use it to print dollar currency sign. So, we have to add a
-              // escape character (\) before it in order to use it properly.
-              prefixText: "\$ ",
-            ),
+          Row(
+            children: [
+              Expanded(
+                // Wrapped Textfield inside a Row with Expanded because
+                // TextField tries to take as much space as possible and Row
+                // bydefault don't stops it; Thus, it can cause problems.
+                child: TextField(
+                  controller: _amountController,
+                  keyboardType:
+                      const TextInputType.numberWithOptions(decimal: true),
+                  decoration: const InputDecoration(
+                    labelText: "Amount",
+                    // $ is a special character used for string injection. We can't
+                    // use it to print dollar currency sign. So, we have to add a
+                    // escape character (\) before it in order to use it properly.
+                    prefixText: "\$ ",
+                  ),
+                ),
+              ),
+              const SizedBox(width: 16),
+              // Making custom date field as no such field is present by default.
+
+              // Wrapped inner Row widget with Expanded because a Row inside a
+              // Row can cause problems.
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      _selectedDate == null
+                          ? "No date selected"
+                          : formatter.format(_selectedDate!), // Added null check
+                          // here to tell flutter that it won't be null here
+                          // because format() wants a non null argument.
+                    ),
+                    IconButton(
+                      onPressed: _presentDatePicker,
+                      icon: const Icon(Icons.calendar_month),
+                    )
+                  ],
+                ),
+              )
+            ],
           ),
           Row(
             children: [
@@ -61,10 +116,7 @@ class _NewExpenseState extends State<NewExpense> {
               ),
               const Spacer(),
               ElevatedButton(
-                onPressed: () {
-                  print(_titleController.text);
-                  print(_amountController.text);
-                },
+                onPressed: () {},
                 child: const Text("Save"),
               ),
             ],
