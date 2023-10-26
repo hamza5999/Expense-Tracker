@@ -49,6 +49,41 @@ class _NewExpenseState extends State<NewExpense> {
     });
   }
 
+  void _submitExpenseData() {
+    final enteredAmount = double.tryParse(_amountController.text);
+    // double.tryParse is a method to convert a string to double. It works like:
+    // double.tryParse("hello") => null, double.tryParse("12.20") => 12.20
+    // Means, if the number is parsable then it returns the number in double &
+    // if it is not, then it returns null. Like the above example.
+
+    final titleIsInvalid = _titleController.text.trim().isEmpty;
+    final amountIsInvalid = enteredAmount == null || enteredAmount <= 0;
+    final dateIsInvalid = _selectedDate == null;
+
+    if (titleIsInvalid || amountIsInvalid || dateIsInvalid) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Invalid Input'),
+          content: const Text(
+              "Enter a valid title, amount, date and category please"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Okay'),
+            ),
+          ],
+        ),
+      );
+      return;
+    }
+
+    // Submission logic
+    // ...
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -141,7 +176,7 @@ class _NewExpenseState extends State<NewExpense> {
                 child: const Text("Cancel"),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: _submitExpenseData,
                 child: const Text("Save"),
               ),
             ],
