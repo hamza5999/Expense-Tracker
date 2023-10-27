@@ -18,6 +18,7 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - DropDownButton
 - AlertDialog
 - Dismissible
+- ScaffoldMessenger utility object
 
 ## Things learned:
 
@@ -48,3 +49,5 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - Remove list item by swipping it using the Dismissible widget
 - Generated a unique key using the ValueKey()
 - Remove the expense item from the Expense list using remove() and pass the function in the onDismissed parameter of the Dismissible widget
+- Used ScaffoldMessenger utility object to show info messages for certain actions
+- Added undo functionality using indexOf() and insert()

@@ -29,19 +29,41 @@ class _ExpensesState extends State<Expenses> {
   ];
 
   void _addExpense(Expense expense) {
-    // Adding expense in the setState method so that the UI may update too
-
+    // Adding expense in the setState method so that the UI may update too.
     setState(() {
       _registeredExpenses.add(expense);
     });
   }
 
   void _removeExpense(Expense expense) {
-    // Removing expense in the setState method so that the UI may update too
+    final expenseIndex = _registeredExpenses.indexOf(expense);
 
+    // Removing expense in the setState method so that the UI may update too.
     setState(() {
       _registeredExpenses.remove(expense);
     });
+
+    ScaffoldMessenger.of(context).clearSnackBars(); // Clearing snackbars to
+    // show the snackbar of the most previous item in case of multiple deletion.
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 3),
+        content: const Text(
+          'Expense deleted successfully',
+        ),
+        action: SnackBarAction(
+          label: 'Undo',
+          onPressed: () {
+            setState(() {
+              // Used insert() instead of add() to add the expense at its
+              // previous position back.
+              _registeredExpenses.insert(expenseIndex, expense);
+            });
+          },
+        ),
+      ),
+    );
   }
 
   void _openAddExpenseOverlay() {
