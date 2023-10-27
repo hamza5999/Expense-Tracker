@@ -17,6 +17,7 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - Future data type
 - DropDownButton
 - AlertDialog
+- Dismissible
 
 ## Things learned:
 
@@ -44,3 +45,6 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - Made a dropdown menu button using the builtin UI element named DropDownButton
 - Add validations on these fields
 - Displayed error messages using the builtin UI element named showDialog and a widget named AlertDialog
+- Remove list item by swipping it using the Dismissible widget
+- Generated a unique key using the ValueKey()
+- Remove the expense item from the Expense list using remove() and pass the function in the onDismissed parameter of the Dismissible widget

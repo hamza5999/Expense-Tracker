@@ -29,11 +29,18 @@ class _ExpensesState extends State<Expenses> {
   ];
 
   void _addExpense(Expense expense) {
-    // Adding expense in the setState method so that the UI may update too means
-    // the Expense list should be updated.
+    // Adding expense in the setState method so that the UI may update too
 
     setState(() {
       _registeredExpenses.add(expense);
+    });
+  }
+
+  void _removeExpense(Expense expense) {
+    // Removing expense in the setState method so that the UI may update too
+
+    setState(() {
+      _registeredExpenses.remove(expense);
     });
   }
 
@@ -67,7 +74,10 @@ class _ExpensesState extends State<Expenses> {
             // display the inner list. What should be the allignments. That's
             // it wasn't showing the ListView items. To display ListView items
             // we have to wrap Expanded around it.
-            child: ExpensesList(expenses: _registeredExpenses),
+            child: ExpensesList(
+              expenses: _registeredExpenses,
+              onRemoveExpense: _removeExpense,
+            ),
           ),
         ],
       ),

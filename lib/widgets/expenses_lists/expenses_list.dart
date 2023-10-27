@@ -5,7 +5,13 @@ import 'package:flutter/cupertino.dart';
 class ExpensesList extends StatelessWidget {
   final List<Expense> expenses;
 
-  const ExpensesList({super.key, required this.expenses});
+  final void Function(Expense expense) onRemoveExpense;
+
+  const ExpensesList({
+    super.key,
+    required this.expenses,
+    required this.onRemoveExpense,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +23,18 @@ class ExpensesList extends StatelessWidget {
     // creates all list items at once. Not when they are about to be visible.
     return ListView.builder(
       itemCount: expenses.length,
-      itemBuilder: (context, index) => ExpenseItem(expenses[index]),
+      itemBuilder: (context, index) => Dismissible(
+        key: ValueKey(expenses[index]), // ValueKey want a parameter that can
+        // be used as a unique indentofication value. That's why passed the
+        // complete expense object into it.
+        onDismissed: (direction) => onRemoveExpense(expenses[index]), // Had to
+        // add this onDismissed function parameter because else the app crashes
+        // because flutter says that the items were dismissed but why are they
+        // still there. And thats because items are still there in the
+        // _registeredExpenses list. So, we have to remove the item from there
+        // too to make sure this error don't occur.
+        child: ExpenseItem(expenses[index]),
+      ),
     );
   }
 }
