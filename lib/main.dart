@@ -32,6 +32,23 @@ void main() {
             vertical: 5,
           ),
         ),
+        textTheme: ThemeData().textTheme.copyWith(
+              // Using it like this "textTheme: ThemeData().textTheme.copyWith()"
+              // instead of "TextTheme" so that we may use the default styles
+
+              // Approach 1
+              // bodyLarge: ThemeData().textTheme.bodyLarge!.copyWith(
+              //       fontSize: 16,
+              //       fontWeight: FontWeight.bold,
+              //     )
+
+              // Approach 2
+              bodyLarge: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: kColorScheme.onSecondaryContainer,
+              ),
+            ),
 
         // Using copyWith() to apply some default stylings and to customize
         // the theme and to override some selective styles else it we have to use

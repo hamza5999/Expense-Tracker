@@ -55,3 +55,4 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - Added undo functionality using indexOf() and insert()
 - Used different themeing constructors with copyWith() to copy the default theme styles and customize selected ones
 - Used ColorScheme.fromSeed() to set the base color
+- Theme.of() to use the theme styles in widgets
