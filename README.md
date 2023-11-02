@@ -19,6 +19,8 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - AlertDialog
 - Dismissible
 - ScaffoldMessenger utility object
+- ThemeData().copyWith(), AppBarTheme().copyWith() and CardTheme().copyWith() etc
+- ColorScheme.fromSeed()
 
 ## Things learned:
 
@@ -51,3 +53,5 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - Remove the expense item from the Expense list using remove() and pass the function in the onDismissed parameter of the Dismissible widget
 - Used ScaffoldMessenger utility object to show info messages for certain actions
 - Added undo functionality using indexOf() and insert()
+- Used different themeing constructors with copyWith() to copy the default theme styles and customize selected ones
+- Used ColorScheme.fromSeed() to set the base color
