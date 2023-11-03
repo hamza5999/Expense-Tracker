@@ -1,3 +1,4 @@
+import 'package:expense_tracker/widgets/chart/chart.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/widgets/expenses_lists/expenses_list.dart';
@@ -99,7 +100,7 @@ class _ExpensesState extends State<Expenses> {
       ),
       body: Column(
         children: [
-          const Text("Chart"),
+          Chart(expenses: _registeredExpenses),
           Expanded(
             // Have to wrap Expanded around it because it became a List inside
             // a List i.e Column accepts a list of Widgets and ListView builder

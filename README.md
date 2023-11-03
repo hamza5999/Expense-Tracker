@@ -59,3 +59,5 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - Theme.of() to use the theme styles in widgets
 - Altered the theme values at the point where they are being used
 - Added dark mode of the app by using ThemeData.dark() constructor function
+- Added an alternative named constructor function
+- Used for ... in loop inside and outside the lists
