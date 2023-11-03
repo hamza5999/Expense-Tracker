@@ -1,6 +1,7 @@
 import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/widgets/expenses_lists/expense_item.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class ExpensesList extends StatelessWidget {
   final List<Expense> expenses;
@@ -24,6 +25,12 @@ class ExpensesList extends StatelessWidget {
     return ListView.builder(
       itemCount: expenses.length,
       itemBuilder: (context, index) => Dismissible(
+        background: Container(
+          color: Theme.of(context).colorScheme.error.withOpacity(0.75),
+          margin: const EdgeInsets.symmetric(
+            horizontal: 16,
+          ),
+        ),
         key: ValueKey(expenses[index]), // ValueKey want a parameter that can
         // be used as a unique indentofication value. That's why passed the
         // complete expense object into it.

@@ -56,3 +56,4 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - Used different themeing constructors with copyWith() to copy the default theme styles and customize selected ones
 - Used ColorScheme.fromSeed() to set the base color
 - Theme.of() to use the theme styles in widgets
+- Altered the theme values at the point where they are being used
