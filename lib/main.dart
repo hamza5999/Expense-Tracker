@@ -6,9 +6,20 @@ import 'package:flutter/material.dart';
 
 var kColorScheme = ColorScheme.fromSeed(
   // fromSeed() is used to set the base color. Different variants of it will be
-  // used later
+  // generated automatically and can be used later
 
   seedColor: const Color.fromARGB(255, 96, 59, 181),
+);
+
+var kDarkColorScheme = ColorScheme.fromSeed(
+  // fromSeed() is used to set the base color. Different variants of it will be
+  // generated automatically and can be used later
+
+  seedColor: const Color.fromARGB(255, 5, 99, 125),
+  // Have to add brightness to tell flutter to optimize the color shades and
+  // and variants for the dark theme
+
+  brightness: Brightness.dark,
 );
 
 void main() {
@@ -62,6 +73,23 @@ void main() {
         // There is no copyWith() for the elevated button theme that's why using
         // the styleFrom()
       ),
+      darkTheme: ThemeData.dark().copyWith(
+        useMaterial3: true,
+        colorScheme: kDarkColorScheme,
+        cardTheme: const CardTheme().copyWith(
+          color: kDarkColorScheme.secondaryContainer,
+          margin: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 5,
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: kDarkColorScheme.primaryContainer,
+          ),
+        ),
+      ),
+      // themeMode: ThemeMode.system, // default
       home: const Expenses(),
     ),
   );

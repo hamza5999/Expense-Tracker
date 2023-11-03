@@ -21,6 +21,7 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - ScaffoldMessenger utility object
 - ThemeData().copyWith(), AppBarTheme().copyWith() and CardTheme().copyWith() etc
 - ColorScheme.fromSeed()
+- ThemeData.dark()
 
 ## Things learned:
 
@@ -57,3 +58,4 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - Used ColorScheme.fromSeed() to set the base color
 - Theme.of() to use the theme styles in widgets
 - Altered the theme values at the point where they are being used
+- Added dark mode of the app by using ThemeData.dark() constructor function
