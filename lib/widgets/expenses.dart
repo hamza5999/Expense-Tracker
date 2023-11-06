@@ -73,7 +73,14 @@ class _ExpensesState extends State<Expenses> {
       constraints: const BoxConstraints(maxWidth: double.infinity), // Added it
       // due to the modal width, modal was not covering the entire width
 
+      useSafeArea: true, // Through this property flutter makes sure that our
+      // modal stays away from the device features like camera that might be
+      // affecting our UI. In most cases, we don't have to worry about it
+      // because flutter takes care of it automatically, but for the modal
+      // overlay it doesn't by default
+
       isScrollControlled: true, // To make the modal cover the entire space
+
       builder: (context) => NewExpense(onAddExpense: _addExpense),
     );
   }
