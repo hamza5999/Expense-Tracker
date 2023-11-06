@@ -70,6 +70,9 @@ class _ExpensesState extends State<Expenses> {
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
       context: context,
+      constraints: const BoxConstraints(maxWidth: double.infinity), // Added it
+      // due to the modal width, modal was not covering the entire width
+
       isScrollControlled: true, // To make the modal cover the entire space
       builder: (context) => NewExpense(onAddExpense: _addExpense),
     );

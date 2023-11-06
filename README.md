@@ -65,3 +65,4 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - Used for ... in loop inside and outside the lists
 - Locked the device orientation using SystemChrome.setPreferredOrientations()
 - Used MediaQuery to made this mobile app responsive
+- Made ModalBottomSheet adaptive to landscape orientation
