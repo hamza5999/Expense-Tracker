@@ -23,6 +23,7 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - ColorScheme.fromSeed()
 - ThemeData.dark()
 - SystemChrome.setPreferredOrientations()
+- MediaQuery.of()
 
 ## Things learned:
 
@@ -63,3 +64,4 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - Added an alternative named constructor function
 - Used for ... in loop inside and outside the lists
 - Locked the device orientation using SystemChrome.setPreferredOrientations()
+- Used MediaQuery to made this mobile app responsive

@@ -77,6 +77,9 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     Widget mainContent = const Center(
       child: Text('No expense found. Try adding one !'),
     );
@@ -98,20 +101,41 @@ class _ExpensesState extends State<Expenses> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Chart(expenses: _registeredExpenses),
-          Expanded(
-            // Have to wrap Expanded around it because it became a List inside
-            // a List i.e Column accepts a list of Widgets and ListView builder
-            // was returning also a list. So, flutter didn't know how to
-            // display the inner list. What should be the allignments. That's
-            // it wasn't showing the ListView items. To display ListView items
-            // we have to wrap Expanded around it.
-            child: mainContent,
-          ),
-        ],
-      ),
+      body: screenWidth < screenHeight
+          ? Column(
+              children: [
+                Chart(expenses: _registeredExpenses),
+                Expanded(
+                  // Have to wrap Expanded around it because it became a List
+                  // inside a List i.e Column accepts a list of Widgets and
+                  // ListView builder was returning also a list. So, flutter
+                  // didn't know how to display the inner list. What should be
+                  // the allignments? That's why it wasn't showing the ListView
+                  // items. To display ListView items we have to wrap Expanded
+                  // around it.
+                  child: mainContent,
+                ),
+              ],
+            )
+          : Row(children: [
+              // Have to wrap Expanded widget around this Chart widget
+              // because by default Row widget have a width of double.infinity
+              // and this Chart widget is also assigned the same width. That's
+              // why it wasn't displaying anything. Because the width is
+              // double.infinity and flutter is not able to display a UI.
+              Expanded(child: Chart(expenses: _registeredExpenses)),
+
+              // Have to wrap Expanded around it because it became a List
+              // inside a List i.e Row accepts a list of Widgets and
+              // ListView builder was returning also a list. So, flutter
+              // didn't know how to display the inner list. What should be
+              // the allignments? That's why it wasn't showing the ListView
+              // items. To display ListView items we have to wrap Expanded
+              // around it.
+              Expanded(
+                child: mainContent,
+              ),
+            ]),
     );
   }
 }
