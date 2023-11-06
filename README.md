@@ -22,6 +22,7 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - ThemeData().copyWith(), AppBarTheme().copyWith() and CardTheme().copyWith() etc
 - ColorScheme.fromSeed()
 - ThemeData.dark()
+- SystemChrome.setPreferredOrientations()
 
 ## Things learned:
 
@@ -61,3 +62,4 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - Added dark mode of the app by using ThemeData.dark() constructor function
 - Added an alternative named constructor function
 - Used for ... in loop inside and outside the lists
+- Locked the device orientation using SystemChrome.setPreferredOrientations()
