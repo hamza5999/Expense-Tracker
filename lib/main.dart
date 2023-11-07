@@ -1,6 +1,5 @@
 import 'package:expense_tracker/widgets/expenses.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 // Its a convention to start the global variable names with "k", especially the
 // variables representing color schemes
@@ -38,7 +37,6 @@ void main() {
         useMaterial3: true,
         colorScheme: kColorScheme,
         appBarTheme: const AppBarTheme().copyWith(
-          centerTitle: false,
           // Referencing the base color "kColorScheme" to use different
           // variants of it
 

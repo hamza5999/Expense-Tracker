@@ -10,7 +10,7 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - Spacer
 - AppBar
 - IconButton
-- Builtin Flutter UI Elements - showModalBottomSheet, showDatePicker, showDialog etc
+- Builtin Flutter UI Elements - showModalBottomSheet, showDatePicker, showDialog and showCupertinoDialog etc
 - TextField
 - TextEditingController() class
 - Navigator class
@@ -26,6 +26,7 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - MediaQuery.of()
 - useSafeArea property of showModalBottomSheet
 - Layout Builder
+- Platform class
 
 ## Things learned:
 
@@ -67,6 +68,9 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - Used for ... in loop inside and outside the lists
 - Locked the device orientation using SystemChrome.setPreferredOrientations()
 - Used MediaQuery to made this mobile app responsive
+- Prevented the keyboard to take up the space while adding values to the input fields by adding dynamic padding
 - Made ModalBottomSheet adaptive to landscape orientation
 - Prevented the app to cover the camera and notification dropdown (safe area) of the mobile app using useSafeArea property by setting it to true
 - Created a dynamic layout using LayoutBuilder and made modal bottom sheet adaptive
+- Added the native ios dialog that is CupertinoDialog using the Platform class
+- Used the native ios dialog named Cupertino for ios devices and native android dialog for android devices

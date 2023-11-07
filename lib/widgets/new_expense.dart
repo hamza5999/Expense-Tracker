@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/models/expense.dart';
+import 'package:flutter/cupertino.dart';
+import 'dart:io';
 
 class NewExpense extends StatefulWidget {
   final void Function(Expense expense) onAddExpense;
@@ -51,20 +53,32 @@ class _NewExpenseState extends State<NewExpense> {
     });
   }
 
-  void _submitExpenseData() {
-    final enteredAmount = double.tryParse(_amountController.text);
-    // double.tryParse is a method to convert a string to double. It works like:
-    // double.tryParse("hello") => null, double.tryParse("12.20") => 12.20
-    // Means, if the number is parsable then it returns the number in double &
-    // if it is not, then it returns null. Like the above example.
-
-    final titleIsInvalid = _titleController.text.trim().isEmpty;
-    final amountIsInvalid = enteredAmount == null || enteredAmount <= 0;
-    final dateIsInvalid = _selectedDate == null;
-
-    if (titleIsInvalid || amountIsInvalid || dateIsInvalid) {
+  void _alertDialog() {
+    // Used Platform class to access a specific platform like IOS in this case
+    if (Platform.isIOS) {
+      // "Cupertino is simply the name of the IOS styling language"
+      showCupertinoDialog(
+        context: context,
+        // CupertinoDialog is the native dialog used in IOS devices. Showing
+        // IOS native dialog for IOS devices
+        builder: (context) => CupertinoAlertDialog(
+          title: const Text('Invalid Input'),
+          content: const Text(
+              "Enter a valid title, amount, date and category please"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Okay'),
+            ),
+          ],
+        ),
+      );
+    } else {
       showDialog(
         context: context,
+        // Showing Android native dialog for Android devices
         builder: (context) => AlertDialog(
           title: const Text('Invalid Input'),
           content: const Text(
@@ -79,6 +93,22 @@ class _NewExpenseState extends State<NewExpense> {
           ],
         ),
       );
+    }
+  }
+
+  void _submitExpenseData() {
+    final enteredAmount = double.tryParse(_amountController.text);
+    // double.tryParse is a method to convert a string to double. It works like:
+    // double.tryParse("hello") => null, double.tryParse("12.20") => 12.20
+    // Means, if the number is parsable then it returns the number in double &
+    // if it is not, then it returns null. Like the above example.
+
+    final titleIsInvalid = _titleController.text.trim().isEmpty;
+    final amountIsInvalid = enteredAmount == null || enteredAmount <= 0;
+    final dateIsInvalid = _selectedDate == null;
+
+    if (titleIsInvalid || amountIsInvalid || dateIsInvalid) {
+      _alertDialog();
       return;
     }
 
