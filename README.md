@@ -25,6 +25,7 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - SystemChrome.setPreferredOrientations()
 - MediaQuery.of()
 - useSafeArea property of showModalBottomSheet
+- Layout Builder
 
 ## Things learned:
 
@@ -68,3 +69,4 @@ It is an expense tracker app where users can effortlessly record and manage expe
 - Used MediaQuery to made this mobile app responsive
 - Made ModalBottomSheet adaptive to landscape orientation
 - Prevented the app to cover the camera and notification dropdown (safe area) of the mobile app using useSafeArea property by setting it to true
+- Created a dynamic layout using LayoutBuilder and made modal bottom sheet adaptive

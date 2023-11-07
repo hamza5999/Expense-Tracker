@@ -102,108 +102,219 @@ class _NewExpenseState extends State<NewExpense> {
 
     final keyboardSpace = MediaQuery.of(context).viewInsets.bottom;
 
-    return SizedBox(
-      height: double.infinity,
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(16, 16, 16, keyboardSpace + 16),
-          child: Column(
-            children: [
-              TextField(
-                controller: _titleController,
-                maxLength: 50,
-                decoration: const InputDecoration(
-                  labelText: "Title",
-                ),
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    // Wrapped Textfield inside a Row with Expanded because
-                    // TextField tries to take as much space as possible and Row
-                    // bydefault don't stops it; Thus, it can cause problems.
-                    child: TextField(
-                      controller: _amountController,
-                      keyboardType:
-                          const TextInputType.numberWithOptions(decimal: true),
-                      decoration: const InputDecoration(
-                        labelText: "Amount",
-                        // $ is a special character used for string injection. We can't
-                        // use it to print dollar currency sign. So, we have to add a
-                        // escape character (\) before it in order to use it properly.
-                        prefixText: "\$ ",
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  // Making custom date field as no such field is present by default.
+    return LayoutBuilder(builder: (context, constraints) {
+      final screenWidth = constraints.maxWidth;
+      final screenHeight = constraints.maxHeight;
 
-                  // Wrapped inner Row widget with Expanded because a Row inside a
-                  // Row can cause problems.
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          _selectedDate == null
-                              ? "No date selected"
-                              : formatter
-                                  .format(_selectedDate!), // Added null check
-                          // here to tell flutter that it won't be null here
-                          // because format() wants a non null argument.
-                        ),
-                        IconButton(
-                          onPressed: _presentDatePicker,
-                          icon: const Icon(Icons.calendar_month),
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(height: 20),
-              Row(
-                children: [
-                  DropdownButton(
-                    value: _selectedCategory,
-                    items: Category.values
-                        .map(
-                          (category) => DropdownMenuItem(
-                            value: category,
-                            child: Text(
-                              category.name.toUpperCase(),
-                            ),
+      return SizedBox(
+        height: double.infinity,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(16, 16, 16, keyboardSpace + 16),
+            child: Column(
+              children: [
+                // If-else syntax to use in lists - without any curly braces
+                if (screenWidth > screenHeight)
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          controller: _titleController,
+                          maxLength: 50,
+                          decoration: const InputDecoration(
+                            labelText: "Title",
                           ),
-                        )
-                        .toList(),
-                    onChanged: (value) {
-                      if (value == null) {
-                        return;
-                      }
+                        ),
+                      ),
+                      const SizedBox(width: 24),
+                      Expanded(
+                        // Wrapped Textfield inside a Row with Expanded because
+                        // TextField tries to take as much space as possible and
+                        // Row by default don't stops it; Thus, it can cause
+                        // problems.
+                        child: TextField(
+                          controller: _amountController,
+                          keyboardType: const TextInputType.numberWithOptions(
+                              decimal: true),
+                          decoration: const InputDecoration(
+                            labelText: "Amount",
+                            // $ is a special character used for string injection.
+                            // We can't use it to print dollar currency sign.
+                            // So, we have to add a escape character (\) before it
+                            // in order to use it properly.
+                            prefixText: "\$ ",
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                else
+                  TextField(
+                    controller: _titleController,
+                    maxLength: 50,
+                    decoration: const InputDecoration(
+                      labelText: "Title",
+                    ),
+                  ),
+                if (screenWidth > screenHeight)
+                  Row(
+                    children: [
+                      DropdownButton(
+                        value: _selectedCategory,
+                        items: Category.values
+                            .map(
+                              (category) => DropdownMenuItem(
+                                value: category,
+                                child: Text(
+                                  category.name.toUpperCase(),
+                                ),
+                              ),
+                            )
+                            .toList(),
+                        onChanged: (value) {
+                          if (value == null) {
+                            return;
+                          }
 
-                      setState(() {
-                        _selectedCategory = value;
-                      });
-                    },
+                          setState(() {
+                            _selectedCategory = value;
+                          });
+                        },
+                      ),
+                      const SizedBox(height: 24),
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              _selectedDate == null
+                                  ? "No date selected"
+                                  : formatter.format(
+                                      _selectedDate!), // Added null check
+                              // here to tell flutter that it won't be null here
+                              // because format() wants a non null argument.
+                            ),
+                            IconButton(
+                              onPressed: _presentDatePicker,
+                              icon: const Icon(Icons.calendar_month),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  )
+                else
+                  Row(
+                    children: [
+                      Expanded(
+                        // Wrapped Textfield inside a Row with Expanded because
+                        // TextField tries to take as much space as possible and
+                        // Row by default don't stops it; Thus, it can cause
+                        // problems.
+                        child: TextField(
+                          controller: _amountController,
+                          keyboardType: const TextInputType.numberWithOptions(
+                              decimal: true),
+                          decoration: const InputDecoration(
+                            labelText: "Amount",
+                            // $ is a special character used for string injection.
+                            // We can't use it to print dollar currency sign.
+                            // So, we have to add a escape character (\) before it
+                            // in order to use it properly.
+                            prefixText: "\$ ",
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      // Making custom date field as no such field is present by
+                      // default.
+
+                      // Wrapped inner Row widget with Expanded because a Row
+                      // inside a Row can cause problems.
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              _selectedDate == null
+                                  ? "No date selected"
+                                  : formatter.format(
+                                      _selectedDate!), // Added null check
+                              // here to tell flutter that it won't be null here
+                              // because format() wants a non null argument.
+                            ),
+                            IconButton(
+                              onPressed: _presentDatePicker,
+                              icon: const Icon(Icons.calendar_month),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
                   ),
-                  const Spacer(),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text("Cancel"),
+                const SizedBox(height: 20),
+                if (screenWidth > screenHeight)
+                  Row(
+                    children: [
+                      const Spacer(),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text("Cancel"),
+                      ),
+                      ElevatedButton(
+                        onPressed: _submitExpenseData,
+                        child: const Text("Save"),
+                      ),
+                    ],
+                  )
+                else
+                  Row(
+                    children: [
+                      DropdownButton(
+                        value: _selectedCategory,
+                        items: Category.values
+                            .map(
+                              (category) => DropdownMenuItem(
+                                value: category,
+                                child: Text(
+                                  category.name.toUpperCase(),
+                                ),
+                              ),
+                            )
+                            .toList(),
+                        onChanged: (value) {
+                          if (value == null) {
+                            return;
+                          }
+
+                          setState(() {
+                            _selectedCategory = value;
+                          });
+                        },
+                      ),
+                      const Spacer(),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text("Cancel"),
+                      ),
+                      ElevatedButton(
+                        onPressed: _submitExpenseData,
+                        child: const Text("Save"),
+                      ),
+                    ],
                   ),
-                  ElevatedButton(
-                    onPressed: _submitExpenseData,
-                    child: const Text("Save"),
-                  ),
-                ],
-              ),
-            ],
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
